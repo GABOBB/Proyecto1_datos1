@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.MPlayerC">
+   <children>
+      <ProgressBar layoutX="14.0" layoutY="349.0" prefHeight="23.0" prefWidth="523.0" progress="0.0" />
+      <Button fx:id="BackB" layoutX="364.0" layoutY="257.0" mnemonicParsing="false" onAction="#Last_song" prefHeight="31.0" prefWidth="38.0" text="&lt;-" textAlignment="CENTER" />
+      <Button fx:id="ST_PY_B" layoutX="432.0" layoutY="257.0" mnemonicParsing="false" onAction="#Stop_Play" prefHeight="31.0" prefWidth="49.0" text="&gt;/II" />
+      <Button fx:id="NextB" layoutX="511.0" layoutY="257.0" mnemonicParsing="false" onAction="#Next_song" text="-&gt;" />
+      <Button fx:id="loop" layoutX="548.0" layoutY="345.0" mnemonicParsing="false" onAction="#loop_B" prefHeight="23.0" prefWidth="37.0" text="[]" />
+      <Slider fx:id="volumen" layoutX="323.0" layoutY="310.0" prefHeight="18.0" prefWidth="265.0" />
+      <ImageView fitHeight="297.0" fitWidth="281.0" layoutX="28.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
+      <TableView fx:id="tabla" layoutX="14.0" layoutY="14.0" prefHeight="322.0" prefWidth="301.0">
+        <columns>
+          <TableColumn fx:id="Blib_nom" prefWidth="103.0" text="biblioteca" />
+          <TableColumn fx:id="num_can" prefWidth="83.0" text="#C" />
+            <TableColumn fx:id="fecha" prefWidth="114.0" text="fecha inicial" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

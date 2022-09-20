@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package listas;
 
 /**
@@ -17,11 +13,15 @@ public class Nodo_simple {
         this.data = data;
         this.next = null;
     }
-    public Nodo_simple(Object data){
-    this.data1 = data;
-    this.next=null;
+    public Nodo_simple(String data,Object data1){
+        this.data = data;
+        this.data1 = data1;
+        this.next=null;
     }
 
+    public Object getData1(){
+        return data1;
+    }
     public String getData() {
         return data;
     }

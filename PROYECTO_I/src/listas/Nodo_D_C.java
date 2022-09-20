@@ -25,8 +25,8 @@ public class Nodo_D_C {
     public String getId(){return this.id;}
     public void setId(String id){this.id = id;}
     
-    public String getAllData(){return this.data;}
-    public void setAllData(String data){this.data = data;}
+    public String getData(){return this.data;}
+    public void setData(String data){this.data = data;}
     
     public Nodo_D_C getNext(){return this.next;}
     public void setNext(Nodo_D_C nodo){this.next = nodo;}

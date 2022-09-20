@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import java.lang.*?>
@@ -8,21 +10,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.MPlayerC">
+<AnchorPane id="AnchorPane" prefHeight="351.0" prefWidth="588.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.MPlayerC">
    <children>
-      <ProgressBar layoutX="14.0" layoutY="349.0" prefHeight="23.0" prefWidth="523.0" progress="0.0" />
-      <Button fx:id="BackB" layoutX="364.0" layoutY="257.0" mnemonicParsing="false" onAction="#Last_song" prefHeight="31.0" prefWidth="38.0" text="&lt;-" textAlignment="CENTER" />
-      <Button fx:id="ST_PY_B" layoutX="432.0" layoutY="257.0" mnemonicParsing="false" onAction="#Stop_Play" prefHeight="31.0" prefWidth="49.0" text="&gt;/II" />
-      <Button fx:id="NextB" layoutX="511.0" layoutY="257.0" mnemonicParsing="false" onAction="#Next_song" text="-&gt;" />
-      <Button fx:id="loop" layoutX="548.0" layoutY="345.0" mnemonicParsing="false" onAction="#loop_B" prefHeight="23.0" prefWidth="37.0" text="[]" />
-      <Slider fx:id="volumen" layoutX="323.0" layoutY="310.0" prefHeight="18.0" prefWidth="265.0" />
+      <Button fx:id="BackB" layoutX="354.0" layoutY="300.0" mnemonicParsing="false" onAction="#Last_song_B" prefHeight="31.0" prefWidth="38.0" text="&lt;-" textAlignment="CENTER" />
+      <Button fx:id="ST_PY_B" layoutX="428.0" layoutY="300.0" mnemonicParsing="false" onAction="#Stop_Play_B" prefHeight="31.0" prefWidth="49.0" text="&gt;/II" />
+      <Button fx:id="NextB" layoutX="514.0" layoutY="300.0" mnemonicParsing="false" onAction="#Next_song_B" text="-&gt;" />
+      <Button fx:id="loop" layoutX="374.0" layoutY="16.0" mnemonicParsing="false" onAction="#loop_B" prefHeight="31.0" prefWidth="37.0" text="[]" />
       <ImageView fitHeight="297.0" fitWidth="281.0" layoutX="28.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
-      <TableView fx:id="tabla" layoutX="14.0" layoutY="14.0" prefHeight="322.0" prefWidth="301.0">
+      <TableView fx:id="tabla" layoutX="14.0" layoutY="15.0" onMouseClicked="#seleccionar" prefHeight="322.0" prefWidth="301.0">
         <columns>
-          <TableColumn fx:id="Blib_nom" prefWidth="103.0" text="biblioteca" />
-          <TableColumn fx:id="num_can" prefWidth="83.0" text="#C" />
-            <TableColumn fx:id="fecha" prefWidth="114.0" text="fecha inicial" />
+          <TableColumn fx:id="Blib_nom" editable="false" prefWidth="103.0" resizable="false" sortable="false" text="Biblioteca" />
+          <TableColumn fx:id="num_can" prefWidth="83.0" resizable="false" text="#C" />
+            <TableColumn fx:id="fecha" prefWidth="114.0" resizable="false" text="Fecha Inicial" />
         </columns>
       </TableView>
+      <Label fx:id="nombreL" alignment="TOP_LEFT" layoutX="323.0" layoutY="244.0" prefHeight="51.0" prefWidth="265.0">
+         <font>
+            <Font name="Cambria Math" size="29.0" />
+         </font></Label>
+      <Button fx:id="add_bilioteca" layoutX="325.0" layoutY="100.0" mnemonicParsing="false" onAction="#add_b_B" prefHeight="31.0" prefWidth="137.0" text="añade biblioteca" visible="false" />
+      <Button fx:id="remuve_bilioteca" layoutX="324.0" layoutY="143.0" mnemonicParsing="false" onAction="#remuve_b_B" prefHeight="31.0" prefWidth="137.0" text="elimina biblioteca" visible="false" />
+      <Button fx:id="opciones" layoutX="323.0" layoutY="16.0" mnemonicParsing="false" onAction="#opcionesB" prefHeight="31.0" prefWidth="37.0" text="+" />
+      <TextField fx:id="newBibliotecaT" layoutX="324.0" layoutY="57.0" onAction="#add_b_B" prefHeight="31.0" prefWidth="98.0" promptText="nombre" visible="false" />
    </children>
 </AnchorPane>

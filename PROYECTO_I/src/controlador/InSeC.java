@@ -73,7 +73,7 @@ public class InSeC implements Initializable {
                         Scene scene = new Scene(root);
                         Stage stage = new Stage();
                         stage.setScene(scene);
-                        controlador.init(PLs);
+                        controlador.init();
                         controlador.cargaPLs(PLs);
                         
                         stage.show();

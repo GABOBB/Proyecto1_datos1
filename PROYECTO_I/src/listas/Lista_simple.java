@@ -50,9 +50,23 @@ public class Lista_simple {
     
     public Nodo_simple busca_dato(String data){
         Nodo_simple actual = this.head;
-        while(actual.getNext()!=null){
+        while(actual!=null){
             if(actual.getData().equals(data)){
                 return actual;
+            }else{
+                actual=actual.getNext();
+            }
+        }
+        return null;
+    }
+    
+    public Nodo_simple busca_objeto(Object nodo){
+        Nodo_simple aux = this.head;
+        while(aux.getNext()!=null){
+            if(aux==nodo){
+                return aux;
+            }else{
+            aux = aux.getNext();
             }
         }
         return null;

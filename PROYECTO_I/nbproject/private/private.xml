@@ -3,13 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Gabriel/Desktop/INTENTO_III/PROYECTO_I/src/listas/Nodo.java</file>
+            <file>file:/C:/Users/Gabriel/Desktop/INTENTO_III/PROYECTO_I/src/listas/Nodo_D_C.java</file>
+            <file>file:/C:/Users/Gabriel/Desktop/INTENTO_III/PROYECTO_I/src/listas/Lista_D_C.java</file>
+            <file>file:/C:/Users/Gabriel/Desktop/INTENTO_III/PROYECTO_I/src/modelos/Usuario.java</file>
+            <file>file:/C:/Users/Gabriel/Desktop/INTENTO_III/PROYECTO_I/src/listas/Nodo_simple.java</file>
             <file>file:/C:/Users/Gabriel/Desktop/INTENTO_III/PROYECTO_I/src/controlador/MPlayerC.java</file>
+            <file>file:/C:/Users/Gabriel/Desktop/INTENTO_III/PROYECTO_I/src/listas/Lista_simple.java</file>
             <file>file:/C:/Users/Gabriel/Desktop/INTENTO_III/PROYECTO_I/src/controlador/FXMain.java</file>
             <file>file:/C:/Users/Gabriel/Desktop/INTENTO_III/PROYECTO_I/src/controlador/InSeC.java</file>
-            <file>file:/C:/Users/Gabriel/Desktop/INTENTO_III/PROYECTO_I/src/controlador/Archivos.java</file>
             <file>file:/C:/Users/Gabriel/Desktop/INTENTO_III/PROYECTO_I/src/auxiliar/credenciales.txt</file>
-            <file>file:/C:/Users/Gabriel/Desktop/INTENTO_III/PROYECTO_I/src/listas/Lista.java</file>
+            <file>file:/C:/Users/Gabriel/Desktop/INTENTO_III/PROYECTO_I/src/auxiliar/UsuariosPL.csv</file>
+            <file>file:/C:/Users/Gabriel/Desktop/INTENTO_III/PROYECTO_I/src/controlador/Archivos.java</file>
         </group>
     </open-files>
 </project-private>

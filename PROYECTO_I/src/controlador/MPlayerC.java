@@ -1,5 +1,7 @@
 package controlador;
 
+import java.awt.Paint;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -17,6 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import listas.Lista_D_C;
 import listas.Lista_simple;
 import listas.Nodo_D_C;
@@ -29,9 +32,10 @@ import listas.Nodo_simple;
  */
 public class MPlayerC implements Initializable {
     
+    private String infoU;
+    private String PLS;
     private Nodo_D_C actual = null;
     private Lista_D_C lis = null;
-    private String PLs;
     private Boolean show = false;
     private Boolean S_P = false;
     private Boolean Lp = false;
@@ -65,7 +69,10 @@ public class MPlayerC implements Initializable {
     private TextField newBibliotecaT;
     
     
-    public void init(){}
+    public void init(String info){
+        this.infoU = info;
+        this.PLS = (info.split(";"))[4];
+    }
     /**
      * Initializes the controller class.
      * @param url
@@ -82,31 +89,36 @@ public class MPlayerC implements Initializable {
     
     @FXML
     private void loop_B(ActionEvent event){
-        if(Lp){System.out.println("loop off");
-        }else{System.out.println("loop on");}
+        
+        if(Lp){this.loop.setText("][");//System.out.println("loop off");
+        }else{this.loop.setText("[]");//System.out.println("loop on");
+        }
         Lp = !Lp;
     }
   
     @FXML
     private void seleccionar(MouseEvent event){
-        this.lis = this.tabla.getSelectionModel().getSelectedItem();
-        ActionEvent e = new ActionEvent();
-        Stop_Play_B(e);
-        String id = this.lis.getID();
-        Nodo_simple aux = lis_de_lis.busca_dato(id);
-        if(aux==null){
-            nombreL.setText("");
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setHeaderText(null);
-            a.setTitle("Error");
-            a.setContentText("la biblioteca esta vacia");
-            a.showAndWait();
-        }else{
-            this.lis = (Lista_D_C) aux.getData1();
-            this.actual = lis.getHead();
-            nombreL.setText(this.actual.getId());
+        try{
+            this.lis = this.tabla.getSelectionModel().getSelectedItem();
+            ActionEvent e = new ActionEvent();
+            Stop_Play_B(e);
+            String id = this.lis.getID();
+            Nodo_simple aux = lis_de_lis.busca_dato(id);
+            if(aux==null){
+                nombreL.setText("");
+                Alert a = new Alert(Alert.AlertType.ERROR);
+                a.setHeaderText(null);
+                a.setTitle("Error");
+                a.setContentText("la biblioteca esta vacia");
+                a.showAndWait();
+            }else{
+                this.lis = (Lista_D_C) aux.getData1();
+                this.actual = lis.getHead();
+                nombreL.setText(this.actual.getId());
+            }
+        }catch(Exception e){
+            nombreL.setText("biblioteca sin\ncanciones :/");
         }
-        
     }
     
 
@@ -138,8 +150,8 @@ public class MPlayerC implements Initializable {
 
     @FXML
     private void Stop_Play_B(ActionEvent event){
-        if (S_P){System.out.println("pausa");//parar musica
-        }else{System.out.println("play");//reanudar musica
+        if (S_P){ST_PY_B.setText("||");//System.out.println("pausa");parar musica
+        }else{ST_PY_B.setText(">");//System.out.println("play");//reanudar musica
         }
         S_P = !S_P;
     }
@@ -176,9 +188,12 @@ public class MPlayerC implements Initializable {
         String d = (date+"").split("-")[1]+"-"+(date+"").split("-")[2];
         String n = newBibliotecaT.getText();
         if(n.isBlank()){n="---";}
+        this.infoU =this.infoU + n+"!"+d+":"+"/";
         Lista_D_C l = new Lista_D_C(n,d);
         this.bibliotecas.add(l);
         this.tabla.refresh();
+        Archivos write = new Archivos();
+        write.sobreEscrive(this.infoU.split(";")[1],this.infoU);
     }
 
     @FXML
@@ -190,6 +205,19 @@ public class MPlayerC implements Initializable {
             alert.setContentText("No hay biblioteca seleccionada");
             alert.showAndWait();
         }else{
+            String temp="";
+            String id = this.lis.getID();
+            String[] pls = PLS.split("/");
+            for(int i=0;i<pls.length;++i){
+                String ids =pls[i].split("!")[0];
+                if(!id.equals(ids)){
+                    temp+=pls[i]+"/";}
+            }
+            this.PLS = temp;
+            this.infoU =this.infoU.substring(0,35)+this.PLS;
+            Archivos write = new Archivos();
+            //System.out.println(this.infoU);
+            write.sobreEscrive(this.infoU.split(";")[1],this.infoU);
             this.bibliotecas.remove(this.lis);
             this.tabla.refresh();
             this.lis = null;
@@ -214,22 +242,24 @@ public class MPlayerC implements Initializable {
     public void cargaPLs(String pls){
         String[] temp = pls.split("/");
         for (String temp1 : temp) {
-            String ID = (temp1.split(":")[0]).split("!")[0];
-            String date = (temp1.split(":")[0]).split("!")[1];
-            Lista_D_C lista = new Lista_D_C(ID ,date);
-            String[] cans = (temp1.split(":")[1]).split(",");
-            for (int j=0;j<cans.length;++j) {
-                Nodo_D_C nodo = new Nodo_D_C(cans[j]);
-                lista.addNodo_inicio(nodo);
+            if(temp1!=null){
+                String ID = (temp1.split(":")[0]).split("!")[0];
+                String date = (temp1.split(":")[0]).split("!")[1];
+                Lista_D_C lista = new Lista_D_C(ID ,date);
+                try{
+                    String[] cans = (temp1.split(":")[1]).split(",");
+                    for (String can : cans) {
+                        Nodo_D_C nodo = new Nodo_D_C(can);
+                        lista.addNodo_inicio(nodo);
+                    }
+                }catch(Exception e){}//System.err.println("biblioteca vasia");
+                Nodo_simple nodof = new Nodo_simple(ID,lista);
+                lis_de_lis.add_nodo(nodof);
+                this.bibliotecas.add(lista);
+                this.tabla.setItems(bibliotecas);
+                
             }
-            System.out.println(ID+" "+date);
-            System.out.println(lista.getHead().getId());
-            System.out.println(lista.getSize());
-            Nodo_simple nodof = new Nodo_simple(ID,lista);
-            lis_de_lis.add_nodo(nodof);
-            this.bibliotecas.add(lista);
-            this.tabla.setItems(bibliotecas);
-            
-        }
-    } 
+        }    
+    }
 }
+    

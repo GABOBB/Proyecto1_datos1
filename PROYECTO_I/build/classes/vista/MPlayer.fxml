@@ -15,7 +15,7 @@
       <Button fx:id="BackB" layoutX="354.0" layoutY="300.0" mnemonicParsing="false" onAction="#Last_song_B" prefHeight="31.0" prefWidth="38.0" text="&lt;-" textAlignment="CENTER" />
       <Button fx:id="ST_PY_B" layoutX="428.0" layoutY="300.0" mnemonicParsing="false" onAction="#Stop_Play_B" prefHeight="31.0" prefWidth="49.0" text="&gt;/II" />
       <Button fx:id="NextB" layoutX="514.0" layoutY="300.0" mnemonicParsing="false" onAction="#Next_song_B" text="-&gt;" />
-      <Button fx:id="loop" layoutX="374.0" layoutY="16.0" mnemonicParsing="false" onAction="#loop_B" prefHeight="31.0" prefWidth="37.0" text="[]" />
+      <Button fx:id="loop" layoutX="374.0" layoutY="16.0" mnemonicParsing="false" onAction="#loop_B" prefHeight="31.0" prefWidth="37.0" text="][" />
       <ImageView fitHeight="297.0" fitWidth="281.0" layoutX="28.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
       <TableView fx:id="tabla" layoutX="14.0" layoutY="15.0" onMouseClicked="#seleccionar" prefHeight="322.0" prefWidth="301.0">
         <columns>
@@ -24,7 +24,7 @@
             <TableColumn fx:id="fecha" prefWidth="114.0" resizable="false" text="Fecha Inicial" />
         </columns>
       </TableView>
-      <Label fx:id="nombreL" alignment="TOP_LEFT" layoutX="323.0" layoutY="244.0" prefHeight="51.0" prefWidth="265.0">
+      <Label fx:id="nombreL" alignment="BOTTOM_LEFT" layoutX="323.0" layoutY="106.0" prefHeight="189.0" prefWidth="265.0">
          <font>
             <Font name="Cambria Math" size="29.0" />
          </font></Label>

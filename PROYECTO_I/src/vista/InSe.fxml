@@ -14,8 +14,8 @@
             <Image url="@../auxiliar/FIRMA%20CODIGO.png" />
          </image>
       </ImageView>
-      <TextField fx:id="User" blendMode="BLUE" layoutX="27.0" layoutY="79.0" onAction="#TryIn" promptText="Username" />
-      <PasswordField fx:id="PW" blendMode="BLUE" layoutX="27.0" layoutY="171.0" onAction="#TryIn" promptText="Password" />
+      <TextField fx:id="User" blendMode="BLUE" layoutX="27.0" layoutY="79.0" onAction="#TryIn" promptText="Username" text="juan1@gmail" />
+      <PasswordField fx:id="PW" blendMode="BLUE" layoutX="27.0" layoutY="171.0" onAction="#TryIn" promptText="Password" text="AAA" />
       <Button fx:id="ButtonIn" blendMode="BLUE" layoutX="27.0" layoutY="246.0" mnemonicParsing="false" onAction="#TryIn" text="Button" />
       <Label fx:id="label_mesage" layoutX="17.0" layoutY="202.0" prefHeight="21.0" prefWidth="207.0" textAlignment="CENTER" textFill="RED" />
    </children>

@@ -150,10 +150,18 @@ public class MPlayerC implements Initializable {
 
     @FXML
     private void Stop_Play_B(ActionEvent event){
-        if (S_P){ST_PY_B.setText("||");//System.out.println("pausa");parar musica
-        }else{ST_PY_B.setText(">");//System.out.println("play");//reanudar musica
+        if(this.lis!=null){
+            if (S_P){ST_PY_B.setText("||");//System.out.println("pausa");parar musica
+            }else{ST_PY_B.setText(">");//System.out.println("play");//reanudar musica
+            }
+            S_P = !S_P;
+        }else{
+        Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setHeaderText(null);
+            a.setTitle("Error");
+            a.setContentText("No hay biblioteca seleccionada");
+            a.showAndWait();
         }
-        S_P = !S_P;
     }
 
     @FXML

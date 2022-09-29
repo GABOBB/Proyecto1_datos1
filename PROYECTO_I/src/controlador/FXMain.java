@@ -6,13 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import listas.Lista_simple;
+import controlador.Archivos;
 
 /**
  *
  * @author Gabriel
  */
 public class FXMain extends Application {
-    
+    static Lista_simple mainlistaCan;
     
     @Override
     public void start(Stage primaryStage) {
@@ -33,10 +35,5 @@ public class FXMain extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        
-        launch(args);
-        
-    }
-    
+    public static void main(String[] args) {launch(args);}
 }

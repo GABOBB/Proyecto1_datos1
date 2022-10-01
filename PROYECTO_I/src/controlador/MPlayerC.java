@@ -1,7 +1,5 @@
 package controlador;
 
-import java.awt.Paint;
-import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -13,13 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import listas.Lista_D_C;
 import listas.Lista_simple;
 import listas.Nodo_D_C;
@@ -27,20 +25,24 @@ import listas.Nodo_simple;
 
 /**
  * FXML Controller class
- *
- * @author Gabriel
+ * maneja la interface grafica y parte importante detras de la logica de la
+ * ventana main
  */
 public class MPlayerC implements Initializable {
     
-    private String infoU;
-    private String PLS;
-    private Nodo_D_C actual = null;
-    private Lista_D_C lis = null;
-    private Boolean show = false;
-    private Boolean S_P = false;
-    private Boolean Lp = false;
-    private Lista_simple lis_de_lis = new Lista_simple();
-    private ObservableList<Lista_D_C> bibliotecas;
+    private String infoU;//se usa para tener la informacion completa del usuario que accede
+    private String PLS;//refiere a las bibliotecas y canciones en las mismas
+    private Nodo_D_C actual = null;//se usa para tener el registro de que cancion esta seleccionada
+    private Lista_D_C lis = null;//es la lista de cancines de la biblioteca seleccionada
+    private Boolean show = false;//valor booleano para saber si las opciones estan desplegadas o no
+    private Boolean S_P = false;//guarda la referencia de si se esta en pausa o reproduciendo
+    private Boolean Lp = false;//determina si esta en modo loop o no
+    private Lista_simple lis_de_lis = new Lista_simple();//una lista de bibliotecas
+    private Lista_simple cansionesL = new Lista_simple();//guarda todas las canciones que tiene disponible el programa
+    private Nodo_simple actualS = cansionesL.getHead();//pensado para guardar que nodo de la lista de todas las cancioens se esta usando
+    private ObservableList<Lista_D_C> bibliotecas;//para visualizar las bilbiotecas en la interface grafica
+    private Media media;//para la reproduccion del audio
+    private MediaPlayer mediaPlayer;//para la reproduccion del audio
     @FXML
     private Button BackB;
     @FXML
@@ -68,7 +70,10 @@ public class MPlayerC implements Initializable {
     @FXML
     private TextField newBibliotecaT;
     
-    
+    /**
+     * instancia el controlador de la venatana main
+     * @param info 
+     */
     public void init(String info){
         this.infoU = info;
         this.PLS = (info.split(";"))[4];
@@ -89,15 +94,14 @@ public class MPlayerC implements Initializable {
     
     @FXML
     private void loop_B(ActionEvent event){
-        
-        if(Lp){this.loop.setText("][");//System.out.println("loop off");
-        }else{this.loop.setText("[]");//System.out.println("loop on");
+        if(Lp){this.loop.setText("][");//"loop off"
+        }else{this.loop.setText("[]");//"loop on"
         }
         Lp = !Lp;
     }
   
     @FXML
-    private void seleccionar(MouseEvent event){
+    private void seleccionar(MouseEvent event){//selecciona cual bilbioteca se esta usando
         try{
             this.lis = this.tabla.getSelectionModel().getSelectedItem();
             ActionEvent e = new ActionEvent();
@@ -115,6 +119,7 @@ public class MPlayerC implements Initializable {
                 this.lis = (Lista_D_C) aux.getData1();
                 this.actual = lis.getHead();
                 nombreL.setText(this.actual.getId());
+                
             }
         }catch(Exception e){
             nombreL.setText("biblioteca sin\ncanciones :/");
@@ -124,7 +129,7 @@ public class MPlayerC implements Initializable {
 
     @FXML
     private void Last_song_B(ActionEvent event){
-        if(this.lis!=null){
+        if(this.lis!=null&&lis.getHead()!=null){
             if(Lp){
                 this.actual = this.actual.getPrevious();
                 nombreL.setText(this.actual.getId());
@@ -143,30 +148,32 @@ public class MPlayerC implements Initializable {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setHeaderText(null);
             a.setTitle("Error");
-            a.setContentText("No hay biblioteca seleccionada");
+            a.setContentText("No hay biblioteca seleccionada o esta vacia");
             a.showAndWait();
         }
     }
 
     @FXML
     private void Stop_Play_B(ActionEvent event){
-        if(this.lis!=null){
-            if (S_P){ST_PY_B.setText("||");//System.out.println("pausa");parar musica
-            }else{ST_PY_B.setText(">");//System.out.println("play");//reanudar musica
+        if(this.lis!=null&&this.lis.getSize()>0){
+            if (S_P){
+                ST_PY_B.setText("||");   
+            }else{
+                ST_PY_B.setText(">");//"play"  
             }
             S_P = !S_P;
         }else{
-        Alert a = new Alert(Alert.AlertType.ERROR);
+            Alert a = new Alert(Alert.AlertType.ERROR);
             a.setHeaderText(null);
             a.setTitle("Error");
-            a.setContentText("No hay biblioteca seleccionada");
+            a.setContentText("No hay biblioteca seleccionada o no tienen canciones");
             a.showAndWait();
         }
     }
 
     @FXML
     private void Next_song_B(ActionEvent event){
-        if (this.lis!=null){
+        if (this.lis!=null&&this.lis.getHead()!=null){
             if(Lp){
                 this.actual = this.actual.getNext();
                 nombreL.setText(this.actual.getId());
@@ -185,7 +192,7 @@ public class MPlayerC implements Initializable {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setHeaderText(null);
             a.setTitle("Error");
-            a.setContentText("No hay biblioteca seleccionada");
+            a.setContentText("No hay biblioteca seleccionada o esta vacia");
             a.showAndWait();
         }
     }   
@@ -224,7 +231,6 @@ public class MPlayerC implements Initializable {
             this.PLS = temp;
             this.infoU =this.infoU.substring(0,35)+this.PLS;
             Archivos write = new Archivos();
-            //System.out.println(this.infoU);
             write.sobreEscrive(this.infoU.split(";")[1],this.infoU);
             this.bibliotecas.remove(this.lis);
             this.tabla.refresh();
@@ -240,10 +246,6 @@ public class MPlayerC implements Initializable {
         remuve_bilioteca.setVisible(this.show);
         newBibliotecaT.setVisible(this.show);
         add_bilioteca.setVisible(this.show);
-        
-            
-
-
     }
     
         
@@ -264,10 +266,9 @@ public class MPlayerC implements Initializable {
                 Nodo_simple nodof = new Nodo_simple(ID,lista);
                 lis_de_lis.add_nodo(nodof);
                 this.bibliotecas.add(lista);
-                this.tabla.setItems(bibliotecas);
-                
+                this.tabla.setItems(bibliotecas);  
             }
-        }    
+        }      
     }
 }
     

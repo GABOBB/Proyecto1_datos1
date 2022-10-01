@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -20,7 +21,7 @@ import listas.Nodo_simple;
 
 /**
  * FXML Controller class
- *
+ *  se encarga de la logica detras de la ventana de inicio
  * @author Gabriel
  */
 public class InSeC implements Initializable {
@@ -64,7 +65,6 @@ public class InSeC implements Initializable {
                 String u = temp.split(";")[1];
                 String p = temp.split(";")[3];
                 if(user.equals(u) && pw.equals(p)){
-                    System.out.println("entraste bor");
                     String PLs = temp.split(";")[4];
                     try{
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/vista/MPlayer.fxml"));
@@ -75,12 +75,14 @@ public class InSeC implements Initializable {
                         stage.setScene(scene);
                         controlador.init(temp);
                         controlador.cargaPLs(PLs);
-                        
                         stage.show();
                         this.stagei.close();
-                        
                     }catch(IOException e){
-                        System.err.println("error cargando la ventana");
+                        Alert a = new Alert(Alert.AlertType.ERROR);
+                        a.setHeaderText(null);
+                        a.setTitle("Error");
+                        a.setContentText("la biblioteca esta vacia");
+                        a.showAndWait();
                     }
                 }
                 actual = actual.getNext();

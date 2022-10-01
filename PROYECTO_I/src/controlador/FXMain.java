@@ -14,7 +14,7 @@ import controlador.Archivos;
  * @author Gabriel
  */
 public class FXMain extends Application {
-    static Lista_simple mainlistaCan;
+
     
     @Override
     public void start(Stage primaryStage) {

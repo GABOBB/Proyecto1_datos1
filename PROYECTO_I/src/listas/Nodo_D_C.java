@@ -2,7 +2,7 @@ package listas;
 
 /**
  * esta clase es responsable de manejar los datos relacionados 
- * con cada nodo de una lista
+ * con cada nodo de una lista doblemente enlazada circular (D_C)
  * @author Gabriel
  */
 public class Nodo_D_C {

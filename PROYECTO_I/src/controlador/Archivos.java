@@ -31,7 +31,7 @@ public class Archivos {
         }   
     }
     
-    public void Leer(String direccion, Lista_D_C lista){
+    public void LeerDC(String direccion, Lista_D_C lista){
         try{
             BufferedReader bf = new BufferedReader(new FileReader(direccion));
             String bfRead;
@@ -39,6 +39,25 @@ public class Archivos {
                 Nodo_D_C nodo = new Nodo_D_C(bfRead);
                 lista.addNodo_inicio(nodo);
                 //System.out.println(nodo.getData());
+            }
+        }catch(Exception e){
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setHeaderText(null);
+            a.setTitle("Error");
+            a.setContentText("Error leyendo el archivo");
+            a.showAndWait();
+        } 
+    }
+    public void LeerS(String direccion, Lista_simple lista){
+        try{
+            BufferedReader bf = new BufferedReader(new FileReader(direccion));
+            String bfRead;
+            while((bfRead=bf.readLine())!=null){
+                String name = bfRead.split(";")[0];
+                String data = bfRead.split(";")[1];
+                System.out.println(data);
+                Nodo_simple nodo = new Nodo_simple(name,data);
+                lista.add_nodo(nodo);
             }
         }catch(Exception e){
             Alert a = new Alert(Alert.AlertType.ERROR);

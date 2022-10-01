@@ -1,7 +1,7 @@
 package listas;
 /**
  *esta clase tiene como proposito el manejo de una lista
- * doblemente enlazada circular.
+ * doblemente enlazada circular.(D_C)
  * @author Gabriel
  */
 public class Lista_D_C {

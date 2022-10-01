@@ -1,7 +1,7 @@
 package listas;
 
 /**
- *
+ *  utilizado para la instanciacion de los diferentes tipos de nodos simplse
  * @author Gabriel
  */
 public class Nodo_simple {
